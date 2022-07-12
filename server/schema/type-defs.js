@@ -32,6 +32,7 @@ const typeDefs = gql`
     
     type Query{
         meetings:[Meeting!]!
+        meeting(meetingId:String!):Meeting!
     }
 `;
 

@@ -1,6 +1,6 @@
 // let {faker} = require('@faker-js/faker')
 let _ = require('lodash')
-let casual = require('casual')
+let casual = require('casual') //for values for the fake data
 
 let dates = [
     new Date('January 17, 2022 03:24:00'),
@@ -23,7 +23,7 @@ const meetingList = [
 ]
 
 
-
+// Lodash to create 40 instances of a meeting schema 
 _.times(40, (i)=>{
     let randomNumber = Math.floor(Math.random() * 5)
     meetingList.push({
