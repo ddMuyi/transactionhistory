@@ -16,15 +16,16 @@ const typeDefs = gql`
         firstName:String!
         lastName:String!
         speciallization: String!
-        charge: Int!
+        charge: Int!,
+        avatar:String!
     }
 
     type Meeting {
         id:ID!
         meetingId:String!
         meetingDate:String!
-        meetingDuration:Int!
-        isCompleted:Boolean!
+        meetingDuration:String!
+        isCompleted:String!
         company:Company
         client:Client
         counsellor:Counsellor
@@ -33,6 +34,7 @@ const typeDefs = gql`
     type Query{
         meetings:[Meeting!]!
         meeting(meetingId:String!):Meeting!
+        filterMeeting(text:String!):[Meeting!]!
     }
 `;
 

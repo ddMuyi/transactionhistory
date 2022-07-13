@@ -1,13 +1,13 @@
-// let {faker} = require('@faker-js/faker')
+let {faker} = require('@faker-js/faker')
 let _ = require('lodash')
 let casual = require('casual') //for values for the fake data
 
 let dates = [
-    new Date('January 17, 2022 03:24:00'),
-    new Date('February 17, 2022 03:24:00'),
-    new Date('March 17, 2022 03:24:00'),
-    new Date('April 17, 2022 03:24:00'),
-    new Date('May 17, 2022 03:24:00')
+    '2022-06-12T09:50:42.874Z',
+    '2022-05-19T12:50:42.874Z',
+    '2022-04-14T09:50:42.874Z',
+    '2022-03-10T01:50:42.874Z',
+    '2022-02-17T14:50:42.874Z'
 ]
 
 let sectors = [ "Fintech", "Food Supply", "Transport", "Finance", 'Education']
@@ -16,7 +16,7 @@ let company = ["Ajax ltd", "Cowrywise", "Moneyrise", "Risevest", "Providence"]
 
 let speciallization = ["Psychosis", "Stress management", "Medical Doctor", "Health Management", "Insurance"]
 
-let duration = [40, 45, 50, 55, 60]
+let duration = ["40", "45", "50", "55", '60']
 
 const meetingList = [
     
@@ -25,15 +25,23 @@ const meetingList = [
 
 // Lodash to create 40 instances of a meeting schema 
 _.times(40, (i)=>{
-    let randomNumber = Math.floor(Math.random() * 5)
+    let random1 = Math.floor(Math.random() * 5)
+    let random2 = Math.floor(Math.random() * 5)
+    let random3 = Math.floor(Math.random() * 5)
+    let random4 = Math.floor(Math.random() * 5)
+    let random5 = Math.floor(Math.random() * 5)
+    let random6 = Math.floor(Math.random() * 5)
+
+
     meetingList.push({
+        id:Number(i) + 1,
         meetingId:require('crypto').randomBytes(10).toString('hex'),
-        meetingDate:dates[randomNumber],
-        meetingDuration:duration[randomNumber],
-        isCompleted:([true, false])[Math.floor(Math.random() * 2)],
+        meetingDate:dates[random1],
+        meetingDuration:duration[random2],
+        isCompleted:(["true", "false"])[Math.floor(Math.random() * 2)],
         company:{
-            sector:sectors[randomNumber],
-            name:company[randomNumber],
+            sector:sectors[random3],
+            name:company[random4],
         },
         client:{
             firstName:casual.first_name,
@@ -43,8 +51,9 @@ _.times(40, (i)=>{
         counsellor:{
             firstName:casual.first_name,
             lastName:casual.last_name,
-            speciallization: speciallization[randomNumber],
-            charge: duration[randomNumber]
+            speciallization: speciallization[random5],
+            charge: duration[random6],
+            avatar:faker.image.avatar()
         }
     })
 })
