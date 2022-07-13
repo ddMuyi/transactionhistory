@@ -18,3 +18,7 @@ After a couple of trials, I needed a way to unite my search queries into one que
 
 ### Pagination
 After studying the nature of the tasks, I realise that there won't be a need to paginate considering that the first instance of the data I'll be fetching must belong to one of 5 different dates. Paginating the data might result to some part of the dates going to next page thereby obstructing accessibility of the app
+
+
+## Conclusion
+Of course the app is a long way from done, it requires a couple of dashboards for the counsellors and the clients, good and dependable payment systems, generation of tokens for in-app transactions, coupons e.t.c With very few competition in the market, this app can hit landmarks.
