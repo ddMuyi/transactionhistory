@@ -46,9 +46,9 @@ const Meetings = () =>{
     
     // if(data) console.log(data)
     return (
-        <div className="pb-24">
+        <div className="pb-28">
             <header className="text-center py-4 bg-blue-200">
-                <h1 className="font-bold text-3xl text-blue-700">Muyi</h1>
+                <h1 className="font-bold text-3xl text-blue-700">Cooperate Counselling</h1>
             </header>
 
             <main className="w-full px-4 lg:px-8 xl:px-12">
@@ -66,7 +66,7 @@ const Meetings = () =>{
                         >
                             <option value="">Filter Status</option>
                             <option value="true">Completed</option>
-                            <option value="false">Pending</option>
+                            <option value="false">Cancelled</option>
                         </select>
 
                         <select className={selectClass} 

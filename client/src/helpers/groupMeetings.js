@@ -21,6 +21,8 @@ let groupMeetings = (arr)=>{
         if (a.date.valueOf() > b.date.valueOf()) {
             return -1
         }
+
+        return false
     })
 
     return ordered
