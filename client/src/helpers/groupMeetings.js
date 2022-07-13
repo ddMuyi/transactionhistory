@@ -16,7 +16,14 @@ let groupMeetings = (arr)=>{
         };
     });
 
-    return groupArrays
+    let ordered = groupArrays.sort((a,b)=>{
+
+        if (a.date.valueOf() > b.date.valueOf()) {
+            return -1
+        }
+    })
+
+    return ordered
 }
 
 export default groupMeetings
