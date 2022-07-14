@@ -1,5 +1,4 @@
 let {faker} = require('@faker-js/faker')
-let _ = require('lodash')
 let casual = require('casual')
 
 faker.locale = 'en'
@@ -18,7 +17,7 @@ const transactions_list = [
 
 
 // Lodash to create 40 instances of a meeting schema 
-_.times(40, (i)=>{
+for(let i =0; i<40; i++) {
     let random1 = Math.floor(Math.random() * 5)
     let random_for_types = Math.floor(Math.random() * 4)
 
@@ -45,6 +44,6 @@ _.times(40, (i)=>{
         charge: ([0, 0, 10.23, 1])[random_for_types],
         amount:faker.finance.amount()
     })
-})
+}
 
 module.exports = transactions_list

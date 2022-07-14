@@ -17,7 +17,7 @@ const MeetingsTable = ({t, fetchTransaction, setShowDetails}) =>{
 
     return (
         <div className="mt-12">
-            <p className="bg-red-200 inline-flex px-4 py-1 rounded-lg">{dateConverter(t.date)}</p>
+            <p className="bg-gray-700 text-white inline-flex px-4 py-1 rounded-lg">{dateConverter(t.date)}</p>
 
             <div className="w-full divide-y mt-4 border rounded-xl text-sm xl:text-base">
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 w-full p-4 font-semibold">

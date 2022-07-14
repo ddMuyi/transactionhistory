@@ -51,7 +51,7 @@ query getTransaction($transaction_id:String!){
 `
 
 export const FILTER_TRANSACTION_BY_NAME = gql`
-    query filterMeetings($query_text:String!){
+    query filterTransactionsName($query_text:String!){
         filter_transaction_name(query_text: $query_text) {
             id
             date
@@ -74,8 +74,31 @@ export const FILTER_TRANSACTION_BY_NAME = gql`
 `
 
 export const FILTER_TRANSACTION_BY_TYPE_STATUS = gql`
-    query filterMeetingsDuration($type_or_status:String!){
+    query filterTransactionStatus($type_or_status:String!){
         filter_transaction_type_status(type_or_status: $type_or_status) {
+            id
+            date
+            status
+            charge
+            type
+            amount
+            beneficiary{
+                firstName
+                lastName
+                avatar
+            }
+            sender{
+                firstName
+                lastName
+                avatar
+            }
+        }
+    }
+`
+
+export const FILTER_TRANSACTION_BY_DATE = gql`
+    query filterTransactionDate($date:String!){
+        filter_transaction_by_date(date: $date) {
             id
             date
             status

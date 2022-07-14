@@ -23,12 +23,22 @@ const resolvers = {
         },
         filter_transaction_type_status:(parent, args )=>{
             const queryArg = args.type_or_status
-            const meetings = _.filter(transactions_list, (t)=>{
+            const transactions = _.filter(transactions_list, (t)=>{
                 return t.status.toUpperCase().match(queryArg.toUpperCase()) || 
                     t.type.toUpperCase().match(queryArg.toUpperCase())
             })
-            return meetings
+            return transactions
         },
+
+        filter_transaction_by_date:(parent, args )=>{
+            const queryArg = args.date
+            const transactions = _.filter(transactions_list, (t)=>{
+                return t.date === queryArg
+            })
+            return transactions
+        },
+
+        
         // || p.isCompleted.toUpperCase().match(queryArg.toUpperCase())
         // || 
         // p.id.toUpperCase().match(queryArg.toUpperCase())

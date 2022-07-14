@@ -25,6 +25,9 @@ let groupMeetings = (arr)=>{
         return false
     })
 
+    // const dates = [ordered["date"]]
+    // console.log(dates)
+
     return ordered
 }
 

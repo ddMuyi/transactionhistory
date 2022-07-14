@@ -33,6 +33,7 @@ const typeDefs = gql`
         transaction(transaction_id:String!):Transaction!
         filter_transaction_name(query_text:String!):[Transaction!]!
         filter_transaction_type_status(type_or_status:String!):[Transaction!]!
+        filter_transaction_by_date(date:String!):[Transaction!]!
     }
 `;
 
