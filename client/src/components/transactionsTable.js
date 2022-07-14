@@ -41,8 +41,6 @@ const TransactionsTable = ({t, fetchTransaction, setShowDetails}) =>{
 
                         <div className={`${colClass} justify-start`}>{transaction.id}</div> 
 
-                        {/* <div className="text-right hidden lg:block">{timeConverter(meet.meetingDate)}</div> */}
-
                         <div className="text-left hidden lg:block">
                             {Status(transaction.status)}
                         </div>

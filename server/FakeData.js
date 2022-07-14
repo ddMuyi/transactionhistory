@@ -15,7 +15,7 @@ const transactions_list = [
     
 ]
 
-// Lodash to create 40 instances of a meeting schema 
+// to create 40 instances of the schema
 for(let i =0; i<40; i++) {
     let random1 = Math.floor(Math.random() * 5)
     let random_for_types = Math.floor(Math.random() * 4)

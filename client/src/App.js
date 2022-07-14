@@ -1,6 +1,6 @@
 import './App.css';
 import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client'
-import Meetings from './views/meetingsData';
+import Transactions from './views/transactionsData';
 
 function App() {
   const client = new ApolloClient({
@@ -10,7 +10,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div className="w-full h-auto">
-        <Meetings/>
+        <Transactions/>
       </div>
     </ApolloProvider>
   );

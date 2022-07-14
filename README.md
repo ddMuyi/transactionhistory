@@ -7,7 +7,7 @@ I used React.js, tailwind.css and Graphql for this project. I was having issues 
 ## problems encountered
 
 ### Filtering by date
-From the requirements of the project, there is supposed to be a specific number of dates (5). Hence, I started looking for possibilities of using graphql to filter the transactions by date, but then it's going to affect the views on the web, since the default categorising is by dates. Because of this, I opted to write scripts at the client side to group the meetings by date immediately after the queries send back the data. This might change as the projects goes on
+From the requirements of the project, there is supposed to be a specific number of dates (5). Hence, I started looking for possibilities of using graphql to filter the transactions by date, but then it's going to affect the views on the web, since the default categorising is by dates. Because of this, I opted to write scripts at the client side to group the transactions by date immediately after the queries send back the data. This might change as the projects goes on
 
 ### Presenting the data
 Although the wireframe presented on the task page is in form of cards, but I decided to go with tabular presentation because of space and accessibility. In case users want to view more details about a certain transaction, I added a "view details" button to show a nice popup of the remaining details of the transaction.

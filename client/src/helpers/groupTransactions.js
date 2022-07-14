@@ -1,4 +1,4 @@
-let groupMeetings = (arr)=>{
+let groupTransactions = (arr)=>{
     const groups = arr.reduce((groups, transaction) => {
         const date = transaction.date;
         if (!groups[date]) {
@@ -25,10 +25,8 @@ let groupMeetings = (arr)=>{
         return false
     })
 
-    // const dates = [ordered["date"]]
-    // console.log(dates)
 
     return ordered
 }
 
-export default groupMeetings
+export default groupTransactions
