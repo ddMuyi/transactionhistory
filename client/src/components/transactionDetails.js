@@ -68,7 +68,7 @@ const TransactionDetails = ({transaction, setShowDetails})=>{
                     </div>
 
                     <div className="absolute bottom-4 right-4">
-                        <Status status={transaction.status}/>
+                        <Status  status={transaction.status}/>
                     </div>
 
                     {/* Close button */}
