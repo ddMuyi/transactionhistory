@@ -5,11 +5,12 @@ This app mimics the admin dashboard  of a fintech product, showing the transacti
 I used React.js, tailwind.css and Graphql for this project. I was having issues with picking express-graphql and apollo-server, but I went with the later because I find it easy to flow with. I used casual and faker to create the fake API.
 
 ## problems encountered
-![alt text](https://github.com/ddMuyi/transactionhistory/tree/master/client/src/assets/details.png)
+![alt text](https://github.com/ddMuyi/transactionhistory/tree/master/client/src/assets/main.jpg)
 
 ### Presenting the data
 Although the wireframe presented on the task page is in form of cards, but I decided to go with tabular presentation because of space and accessibility. In case users want to view more details about a certain transaction, I added a "view details" button to show a nice popup of the remaining details of the transaction.
-![alt text](https://github.com/ddMuyi/transactionhistory/tree/master/client/src/assets/main.png)
+
+![alt text](https://github.com/ddMuyi/transactionhistory/tree/master/client/src/assets/details.jpg)
 
 But with table, comes the difficulty of presenting data on the mobile screen. I had the option of splitting ech row into two lines, but then it wouldn't work as data are still overflowing, so I had to remove some columns in the table on the mobile screen as well
 
