@@ -5,7 +5,7 @@ const TransactionsTable = ({t, fetchTransaction, setShowDetails}) =>{
 
     const colClass = "flex items-center"
 
-    const Status = (status)=>{
+    const Status = ({status})=>{
         return (
             <>
                 {status === "successful" ? <span className="py-1 px-4 rounded-full bg-green-100 text-green-600 cursor-pointer">Successful</span> : 
@@ -42,7 +42,7 @@ const TransactionsTable = ({t, fetchTransaction, setShowDetails}) =>{
                         <div className={`${colClass} justify-start`}>{transaction.id}</div> 
 
                         <div className="text-left hidden lg:block">
-                            {Status(transaction.status)}
+                            <Status status={transaction.status}/>
                         </div>
 
                         <div className="text-left hidden lg:block capitalize">

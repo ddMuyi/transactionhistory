@@ -15,6 +15,16 @@ const TransactionDetails = ({transaction, setShowDetails})=>{
         // eslint-disable-next-line
    },[])
 
+   const Status = ({status})=>{
+        return (
+            <>
+                {status === "successful" ? <span className="py-1 px-4 rounded-full bg-green-100 text-green-600 cursor-pointer">Successful</span> : 
+                status === "failed" ? <span className="py-1 px-4 rounded-full bg-red-100 text-red-500 cursor-pointer">Failed</span> : 
+                <span className="py-1 px-4 rounded-full bg-gray-100 cursor-pointer">Pending</span>}
+            </>
+        )
+    }
+
 
     return (
         <div className="fixed top-0 left-0 w-full min-h-screen bg-white transparent-bg bg-opacity-50 flex justify-center items-start pt-12 px-4 md:px-8 lg:px-0 detailsCont">
@@ -22,7 +32,7 @@ const TransactionDetails = ({transaction, setShowDetails})=>{
                     <div className="text-center text-4xl font-semibold py-2">Transaction Details</div>
 
                     <div className="grid grid-cols-12 gap-4">
-                        <div className="col-span-12 font-semibold">Sender details</div>
+                        <div className="col-span-12 font-semibold">Sender Details</div>
                         <div className="col-span-5">
                             <img src={transaction.sender.avatar} alt="Counsellor's avatar" className="w-24 h-24 rounded-full"/>
                         </div>
@@ -34,7 +44,7 @@ const TransactionDetails = ({transaction, setShowDetails})=>{
                     </div>
 
                     <div className="grid grid-cols-12 gap-4 mt-6">
-                        <div className="col-span-12 font-semibold">Beneficiary details</div>
+                        <div className="col-span-12 font-semibold">Beneficiary Details</div>
                         <div className="col-span-5">
                             <img src={transaction.beneficiary.avatar} alt="Counsellor's avatar" className="w-24 h-24 rounded-full"/>
                         </div>
@@ -48,13 +58,17 @@ const TransactionDetails = ({transaction, setShowDetails})=>{
                     </div>
 
                     <div className="grid grid-cols-12 gap-1 mt-6">
-                        <div className="col-span-12 font-semibold">Other details</div>
+                        <div className="col-span-12 font-semibold">Other Details</div>
                         <div className="col-span-12 space-y-2 mt-2">
                             <p><span className="font-semibold">Transaction ID:</span> {transaction.id}</p>
                             <p><span className="font-semibold">Transaction Date:</span> {dateConverter(transaction.date)}</p>
                             <p><span className="font-semibold">Transaction Time:</span> {timeConverter(transaction.date)}</p>
                             <p><span className="font-semibold">Amount:</span> #{transaction.amount}</p>
                         </div>
+                    </div>
+
+                    <div className="absolute bottom-4 right-4">
+                        <Status status={transaction.status}/>
                     </div>
 
                     {/* Close button */}
