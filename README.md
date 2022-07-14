@@ -5,13 +5,17 @@ This app mimics the admin dashboard  of a fintech product, showing the transacti
 I used React.js, tailwind.css and Graphql for this project. I was having issues with picking express-graphql and apollo-server, but I went with the later because I find it easy to flow with. I used casual and faker to create the fake API.
 
 ## problems encountered
-
-### Filtering by date
-From the requirements of the project, there is supposed to be a specific number of dates (5). Hence, I started looking for possibilities of using graphql to filter the transactions by date, but then it's going to affect the views on the web, since the default categorising is by dates. Because of this, I opted to write scripts at the client side to group the transactions by date immediately after the queries send back the data. This might change as the projects goes on
+![alt text](https://github.com/ddMuyi/transactionhistory/tree/master/client/src/assets/details.png)
 
 ### Presenting the data
 Although the wireframe presented on the task page is in form of cards, but I decided to go with tabular presentation because of space and accessibility. In case users want to view more details about a certain transaction, I added a "view details" button to show a nice popup of the remaining details of the transaction.
+![alt text](https://github.com/ddMuyi/transactionhistory/tree/master/client/src/assets/main.png)
+
 But with table, comes the difficulty of presenting data on the mobile screen. I had the option of splitting ech row into two lines, but then it wouldn't work as data are still overflowing, so I had to remove some columns in the table on the mobile screen as well
+
+
+### Filtering by date
+From the requirements of the project, there is supposed to be a specific number of dates (5). Hence, I started looking for possibilities of using graphql to filter the transactions by date, but then it's going to affect the views on the web, since the default categorising is by dates. Because of this, I opted to write scripts at the client side to group the transactions by date immediately after the queries send back the data. This might change as the projects goes on
 
 ### Filtering with queries
 After a couple of trials, I needed a way to unite my search queries into one query request. Doing so, I encountered a type problem because most of variables require String type but one is a Boolean and another is an Integer type. To fix this issue, I had to resort back to using String type for everything. This fixed the issue. I'll modify the code if there is enough time
@@ -19,7 +23,7 @@ After a couple of trials, I needed a way to unite my search queries into one que
 ** update: I ended up writing separate queries for all the filters. Although the queries look similar, but then the code looks simpler and readable
 
 ### Pagination
-After studying the nature of the tasks, I realise that there won't be a need to paginate considering that the first instance of the data I'll be fetching must belong to one of 5 different dates. Paginating the data might result to some part of the dates going to next page thereby obstructing accessibility of the app
+After studying the nature of the tasks, I realise that there won't be a need to paginate considering that the first instance of the data I'll be fetching must belong to one of 5 different dates. Paginating the data might result to some part of the dates going to next page thereby obstructing accessibility in the app
 
 
 ## Possible imporvements
