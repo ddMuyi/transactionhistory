@@ -1,40 +1,38 @@
 const {gql} = require('apollo-server')
 
 const typeDefs = gql`
-    type Company{
-        sector:String!
-        name:String!
-    }
-
-    type Client{
+    type Beneficiary{
         firstName:String!
         lastName:String!
-        phoneNumber:String!
-    }
-
-    type Counsellor{
-        firstName:String!
-        lastName:String!
-        speciallization: String!
-        charge: Int!,
+        phone_number:String!
+        email:String!
         avatar:String!
     }
 
-    type Meeting {
-        id:ID!
-        meetingId:String!
-        meetingDate:String!
-        meetingDuration:String!
-        isCompleted:String!
-        company:Company
-        client:Client
-        counsellor:Counsellor
+    type Sender{
+        firstName:String!
+        lastName:String!
+        avatar:String!
+        email:String!
+        phone_number:String!
+    }
+
+    type Transaction {
+        id:String!
+        date:String!
+        status:String!
+        charge: Float!
+        type:String!
+        amount:String!
+        beneficiary:Beneficiary
+        sender:Sender
     }
     
     type Query{
-        meetings:[Meeting!]!
-        meeting(meetingId:String!):Meeting!
-        filterMeeting(text:String!):[Meeting!]!
+        transactions:[Transaction!]!
+        transaction(transaction_id:String!):Transaction!
+        filter_transaction_name(query_text:String!):[Transaction!]!
+        filter_transaction_type_status(type_or_status:String!):[Transaction!]!
     }
 `;
 

@@ -1,23 +1,37 @@
-let meetingList  =  require("../FakeData")
+let transactions_list  =  require("../FakeData")
 let _ = require('lodash')
 
 const resolvers = {
     Query:{
-        meetings() {
-            return meetingList
+        transactions() {
+            return transactions_list
         },
-        meeting:(parent, args )=>{
-            const meetingId = args.meetingId
-            const meeting = _.find(meetingList, {meetingId})
-            return meeting
+        transaction:(parent, args )=>{
+            const id = args.transaction_id
+            const transaction = _.find(transactions_list, {id:id})
+            return transaction
         },
-        filterMeeting:(parent, args)=>{
-            let queryArg = args.text
-            const meetings = _.filter(meetingList, (p)=>{
-                return p.counsellor.firstName.toUpperCase().match(queryArg.toUpperCase()) || p.counsellor.lastName.toUpperCase().match(queryArg.toUpperCase()) || p.client.firstName.toUpperCase().match(queryArg.toUpperCase()) || p.client.lastName.toUpperCase().match(queryArg.toUpperCase()) || p.company.name.toUpperCase().match(queryArg.toUpperCase()) || p.meetingId.toUpperCase().match(queryArg.toUpperCase()) || p.counsellor.speciallization.toUpperCase().match(queryArg.toUpperCase()) || p.isCompleted.toUpperCase().match(queryArg.toUpperCase()) || p.meetingDuration == queryArg
+        filter_transaction_name:(parent, args)=>{
+            let queryArg = args.query_text
+            const transactions = _.filter(transactions_list, (t)=>{
+                return t.sender.firstName.toUpperCase().match(queryArg.toUpperCase()) || 
+                        t.sender.lastName.toUpperCase().match(queryArg.toUpperCase()) || 
+                        t.beneficiary.firstName.toUpperCase().match(queryArg.toUpperCase()) || 
+                        t.beneficiary.lastName.toUpperCase().match(queryArg.toUpperCase())
+            })
+            return transactions
+        },
+        filter_transaction_type_status:(parent, args )=>{
+            const queryArg = args.type_or_status
+            const meetings = _.filter(transactions_list, (t)=>{
+                return t.status.toUpperCase().match(queryArg.toUpperCase()) || 
+                    t.type.toUpperCase().match(queryArg.toUpperCase())
             })
             return meetings
-        }
+        },
+        // || p.isCompleted.toUpperCase().match(queryArg.toUpperCase())
+        // || 
+        // p.id.toUpperCase().match(queryArg.toUpperCase())
     } 
 }
 

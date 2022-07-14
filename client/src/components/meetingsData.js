@@ -1,36 +1,46 @@
 import React, {useEffect, useState} from "react";
 import { useQuery, useLazyQuery } from "@apollo/client";
-import groupMeetings from "../helpers/groupMeetings";
+import groupTransactions from "../helpers/groupTransactions";
 import MeetingsTable from "./meetingsTable";
 import MeetingDetails from "./meetingDetails";
-import { QUERY_ALL_MEETINGS, GET_MEETING_BY_ID, FILTER_MEETINGS } from "../helpers/queries";
+import { QUERY_ALL_TRANSACTIONS, GET_TRANSACTION_BY_ID, FILTER_TRANSACTION_BY_NAME, FILTER_TRANSACTION_BY_TYPE_STATUS } from "../helpers/queries";
 
 
 const Meetings = () =>{
-    const [meetings, setMeetings] = useState([])
+    const [transactions, setTransactions] = useState([])
     const [showDetails, setShowDetails] = useState(false)
-    const {data} = useQuery(QUERY_ALL_MEETINGS)
+    const {data} = useQuery(QUERY_ALL_TRANSACTIONS)
 
-    const [fetchMeeting, {data:meetingSearchedData}] = useLazyQuery(GET_MEETING_BY_ID)
+    const [fetchTransaction, {data:fetchedTransactionById}] = useLazyQuery(GET_TRANSACTION_BY_ID)
 
-    const [filterMeetings, {data:filteredMeetingsData, error:filteredMeetingsError}] = useLazyQuery(FILTER_MEETINGS)
+    const [filterTransactionsByTypeStatus, {data:filteredTransactionsByTypeStatus}] = useLazyQuery(FILTER_TRANSACTION_BY_TYPE_STATUS)
 
-   
-    // const [meetingId, setMeetingId] = useState("")
-    if(filteredMeetingsError) console.log(filteredMeetingsError)
+    const [filterTransactionsByName, {data:filteredTransactionsByName}] = useLazyQuery(FILTER_TRANSACTION_BY_NAME)
 
+
+    // The default data from fetching all meetings
     useEffect(()=>{
         if(data){
-            setMeetings(groupMeetings(data.meetings))
+            // console.log(data)
+            setTransactions(groupTransactions(data.transactions))
         }
     }, [data])
 
+
+    // To filter other queries aside duration
     useEffect(()=>{
-        if(filteredMeetingsData) {
-            console.log(filteredMeetingsData.filterMeeting)
-            setMeetings(groupMeetings(filteredMeetingsData.filterMeeting))
+        if(filteredTransactionsByName) {
+            setTransactions(groupTransactions(filteredTransactionsByName.filter_transaction_name))
         }
-    },[filteredMeetingsData])
+    },[filteredTransactionsByName])
+
+
+    // To filter durations
+    useEffect(()=>{
+        if(filteredTransactionsByTypeStatus) {
+            setTransactions(groupTransactions(filteredTransactionsByTypeStatus.filter_transaction_type_status))
+        }
+    },[filteredTransactionsByTypeStatus])
 
     const selectClass = "border rounded bg-white h-11 w-full px-4"
 
@@ -41,69 +51,55 @@ const Meetings = () =>{
         })
     }
 
-    let speciallizations = ["Psychosis", "Stress management", "Medical Doctor", "Health Management", "Insurance"]
-    let durations = ["40", "45", "50", "55", '60']
+    let speciallizations = ["withdrawal", "deposit", "transfer", "airtime"]
+    // let durations = ["40", "45", "50", "55", '60']
     
     // if(data) console.log(data)
     return (
-        <div className="pb-28">
-            <header className="text-center py-4 bg-blue-200">
-                <h1 className="font-bold text-3xl text-blue-700">Cooperate Counselling</h1>
+        <div className="pb-28 px-4 lg:px-8 xl:px-12">
+            <header className="text-center py-4">
+                <h1 className="font-bold text-3xl">TRANSACTION HISTORY</h1>
             </header>
 
-            <main className="w-full px-4 lg:px-8 xl:px-12">
+            <main className="container mx-auto">
                 {/* Fiilters */}
                 <div className="grid grid-cols-12 gap-4 mt-6">
                     <div className="col-span-12 lg:col-span-8 flex items-center justify-between gap-4">
                         <select className={selectClass}
                             onChange={(e)=>{
-                                filterMeetings({
+                                filterTransactionsByTypeStatus({
                                     variables:{
-                                        text:e.target.value
+                                        type_or_status:e.target.value
                                     }
                                 })
                             } }
                         >
                             <option value="">Filter Status</option>
-                            <option value="true">Completed</option>
-                            <option value="false">Cancelled</option>
+                            <option value="successful">Successful</option>
+                            <option value="failed">Failed</option>
+                            <option value="pending">Pending</option>
                         </select>
 
                         <select className={selectClass} 
                             onChange={(e)=>{
-                                filterMeetings({
+                                filterTransactionsByTypeStatus({
                                     variables:{
-                                        text:e.target.value
+                                        type_or_status:e.target.value
                                     }
                                 })
                             } }
                         >
-                            <option value="">Filter Speciallization</option>
+                            <option value="">Filter Type</option>
                             {speciallizations.map(s=>{
                                 return <option key={s} value={s}>{s}</option>
                             })}
                         </select>
-
-                        <select className={selectClass}
-                            onChange={(e)=>{
-                                filterMeetings({
-                                    variables:{
-                                        text:e.target.value
-                                    }
-                                })
-                            } }
-                        >
-                            <option value="">Filter Duration</option>
-                            {durations.map(s=>{
-                                return <option key={s} value={s}>{s}</option>
-                            })}
-                        </select>
                     </div>
-                    <input className="col-span-12 lg:col-span-4 border rounded h-11 px-2" placeholder="Search Counsellor and Client name" 
+                    <input className="col-span-12 lg:col-span-4 border rounded h-11 px-2" placeholder="Search name or ID" 
                         onChange={(e)=>{
-                            filterMeetings({
+                            filterTransactionsByName({
                                 variables:{
-                                    text:e.target.value
+                                    query_text:e.target.value
                                 }
                             })
                         } }
@@ -112,9 +108,9 @@ const Meetings = () =>{
                 
                 {/* Datas */}
                 <section className="w-full">
-                    {meetings && meetings.length > 0 && meetings.map(m=>{
-                        return <MeetingsTable m={m} fetchMeeting={fetchMeeting} key={m.date} setShowDetails={setShowDetails}/> 
-                    })}
+                    {(transactions && transactions.length > 0) ? transactions.map(t=>{
+                        return <MeetingsTable t={t} fetchTransaction={fetchTransaction} key={t.date} setShowDetails={setShowDetails}/> 
+                    }) : <div className="text-center mt-12 text-2xl font-semibold">There is no data available...</div>}
                 </section>
             </main>
 
@@ -122,7 +118,7 @@ const Meetings = () =>{
                 👆🏾
             </div>
 
-            {showDetails && meetingSearchedData && <MeetingDetails meeting={meetingSearchedData.meeting} setShowDetails={setShowDetails}/>}
+            {showDetails && fetchedTransactionById && <MeetingDetails transaction={fetchedTransactionById.transaction} setShowDetails={setShowDetails}/>}
         </div>
     )
 }

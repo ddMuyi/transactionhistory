@@ -1,17 +1,20 @@
 import { gql } from "@apollo/client"
 
-export const QUERY_ALL_MEETINGS = gql`
-    query getMeetings{
-        meetings {
-            meetingId
-            meetingDate
-            meetingDuration
-            isCompleted
-            client {
+export const QUERY_ALL_TRANSACTIONS = gql`
+    query getTransactions{
+        transactions {
+            id
+            date
+            status
+            charge
+            type
+            amount
+            beneficiary{
                 firstName
                 lastName
+                avatar
             }
-            counsellor {
+            sender{
                 firstName
                 lastName
                 avatar
@@ -20,52 +23,74 @@ export const QUERY_ALL_MEETINGS = gql`
     }
 `
 
-export const GET_MEETING_BY_ID = gql`
-query getMeeting($meetingId:String!){
-    meeting(meetingId:$meetingId){
-        meetingId
-        meetingDate
-        meetingDuration
-        isCompleted
-        client {
+export const GET_TRANSACTION_BY_ID = gql`
+query getTransaction($transaction_id:String!){
+    transaction(transaction_id:$transaction_id){
+        id
+        date
+        status
+        charge
+        type
+        amount
+        beneficiary{
             firstName
             lastName
-            phoneNumber
-        }
-        counsellor {
-            firstName
-            lastName
+            phone_number
+            email
             avatar
-            speciallization
-            charge
         }
-        company {
-            name
-            sector
+        sender{
+            firstName
+            lastName
+            phone_number
+            email
+            avatar
         }
     }
 }
 `
 
-export const FILTER_MEETINGS = gql`
-    query filterMeetings($text:String!){
-        filterMeeting(text: $text) {
-            meetingId
-            meetingDate
-            meetingDuration
-            isCompleted
-            client {
-                firstName
-                lastName
-            }
-            counsellor {
+export const FILTER_TRANSACTION_BY_NAME = gql`
+    query filterMeetings($query_text:String!){
+        filter_transaction_name(query_text: $query_text) {
+            id
+            date
+            status
+            charge
+            type
+            amount
+            beneficiary{
                 firstName
                 lastName
                 avatar
-                speciallization
             }
-            company {
-                name
+            sender{
+                firstName
+                lastName
+                avatar
+            }
+        }
+    }
+`
+
+export const FILTER_TRANSACTION_BY_TYPE_STATUS = gql`
+    query filterMeetingsDuration($type_or_status:String!){
+        filter_transaction_type_status(type_or_status: $type_or_status) {
+            id
+            date
+            status
+            charge
+            type
+            amount
+            beneficiary{
+                firstName
+                lastName
+                avatar
+            }
+            sender{
+                firstName
+                lastName
+                avatar
             }
         }
     }

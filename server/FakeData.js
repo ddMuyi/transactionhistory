@@ -1,6 +1,8 @@
 let {faker} = require('@faker-js/faker')
 let _ = require('lodash')
-let casual = require('casual') //for values for the fake data
+let casual = require('casual')
+
+faker.locale = 'en'
 
 let dates = [
     '2022-06-12T09:50:42.874Z',
@@ -10,15 +12,7 @@ let dates = [
     '2022-02-17T14:50:42.874Z'
 ]
 
-let sectors = [ "Fintech", "Food Supply", "Transport", "Finance", 'Education']
-
-let company = ["Ajax ltd", "Cowrywise", "Moneyrise", "Risevest", "Providence"]
-
-let speciallization = ["Psychosis", "Stress management", "Medical Doctor", "Health Management", "Insurance"]
-
-let duration = ["40", "45", "50", "55", '60']
-
-const meetingList = [
+const transactions_list = [
     
 ]
 
@@ -26,36 +20,31 @@ const meetingList = [
 // Lodash to create 40 instances of a meeting schema 
 _.times(40, (i)=>{
     let random1 = Math.floor(Math.random() * 5)
-    let random2 = Math.floor(Math.random() * 5)
-    let random3 = Math.floor(Math.random() * 5)
-    let random4 = Math.floor(Math.random() * 5)
-    let random5 = Math.floor(Math.random() * 5)
-    let random6 = Math.floor(Math.random() * 5)
+    let random_for_types = Math.floor(Math.random() * 4)
 
 
-    meetingList.push({
-        id:Number(i) + 1,
-        meetingId:require('crypto').randomBytes(10).toString('hex'),
-        meetingDate:dates[random1],
-        meetingDuration:duration[random2],
-        isCompleted:(["true", "false"])[Math.floor(Math.random() * 2)],
-        company:{
-            sector:sectors[random3],
-            name:company[random4],
-        },
-        client:{
+    transactions_list.push({
+        id:require('crypto').randomBytes(10).toString('hex'),
+        date:dates[random1],
+        status:(["successful", "failed", "pending"])[Math.floor(Math.random() * 3)],
+        beneficiary:{
             firstName:casual.first_name,
             lastName:casual.last_name,
-            phoneNumber:casual.phone,
+            phone_number:faker.phone.number(),
+            avatar:faker.image.avatar(),
+            email:faker.internet.email()
         },
-        counsellor:{
+        sender:{
             firstName:casual.first_name,
             lastName:casual.last_name,
-            speciallization: speciallization[random5],
-            charge: duration[random6],
-            avatar:faker.image.avatar()
-        }
+            avatar:faker.image.avatar(),
+            email:faker.internet.email(),
+            phone_number:faker.phone.number(),
+        },
+        type:(["withdrawal", "deposit", "transfer", "airtime"])[random_for_types],
+        charge: ([0, 0, 10.23, 1])[random_for_types],
+        amount:faker.finance.amount()
     })
 })
 
-module.exports = meetingList
+module.exports = transactions_list

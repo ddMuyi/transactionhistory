@@ -1,10 +1,10 @@
 let groupMeetings = (arr)=>{
-    const groups = arr.reduce((groups, meeting) => {
-        const date = meeting.meetingDate;
+    const groups = arr.reduce((groups, transaction) => {
+        const date = transaction.date;
         if (!groups[date]) {
             groups[date] = [];
         }
-        groups[date].push(meeting);
+        groups[date].push(transaction);
         return groups;
     }, {});
         
@@ -12,7 +12,7 @@ let groupMeetings = (arr)=>{
     const groupArrays = Object.keys(groups).map((date) => {
         return {
             date,
-            meetings: groups[date]
+            transactions: groups[date]
         };
     });
 
