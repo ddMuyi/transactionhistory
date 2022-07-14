@@ -12,12 +12,10 @@ export const QUERY_ALL_TRANSACTIONS = gql`
             beneficiary{
                 firstName
                 lastName
-                avatar
             }
             sender{
                 firstName
                 lastName
-                avatar
             }
         }
     }
@@ -62,12 +60,10 @@ export const FILTER_TRANSACTION_BY_NAME = gql`
             beneficiary{
                 firstName
                 lastName
-                avatar
             }
             sender{
                 firstName
                 lastName
-                avatar
             }
         }
     }
@@ -85,12 +81,10 @@ export const FILTER_TRANSACTION_BY_TYPE_STATUS = gql`
             beneficiary{
                 firstName
                 lastName
-                avatar
             }
             sender{
                 firstName
                 lastName
-                avatar
             }
         }
     }
@@ -108,12 +102,10 @@ export const FILTER_TRANSACTION_BY_DATE = gql`
             beneficiary{
                 firstName
                 lastName
-                avatar
             }
             sender{
                 firstName
                 lastName
-                avatar
             }
         }
     }

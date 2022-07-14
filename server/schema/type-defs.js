@@ -1,6 +1,31 @@
 const {gql} = require('apollo-server')
 
+
+// To define the expected Type of each key in the objects
 const typeDefs = gql`
+    # the expected objeect is supposed to look like this
+    # {
+    #     id
+    #     date
+    #     status
+    #     beneficiary{
+    #         firstName
+    #         lastName
+    #         phone_number
+    #         avatar
+    #         email
+    #     },
+    #     sender{
+    #         firstName
+    #         lastName
+    #         avatar
+    #         email
+    #         phone_number
+    #     },
+    #     type
+    #     charge
+    #     amount
+    # }
     type Beneficiary{
         firstName:String!
         lastName:String!

@@ -23,9 +23,10 @@ for(let i =0; i<40; i++) {
 
 
     transactions_list.push({
-        id:require('crypto').randomBytes(10).toString('hex'),
+        id:require('crypto').randomBytes(7).toString('hex'),
         date:dates[random1],
         status:(["successful", "failed", "pending"])[Math.floor(Math.random() * 3)],
+        type:(["withdrawal", "deposit", "transfer", "airtime"])[random_for_types],
         beneficiary:{
             firstName:casual.first_name,
             lastName:casual.last_name,
@@ -40,7 +41,6 @@ for(let i =0; i<40; i++) {
             email:faker.internet.email(),
             phone_number:faker.phone.number(),
         },
-        type:(["withdrawal", "deposit", "transfer", "airtime"])[random_for_types],
         charge: ([0, 0, 10.23, 1])[random_for_types],
         amount:faker.finance.amount()
     })

@@ -1,6 +1,6 @@
 import './App.css';
 import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client'
-import Meetings from './components/meetingsData';
+import Meetings from './views/meetingsData';
 
 function App() {
   const client = new ApolloClient({

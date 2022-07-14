@@ -1,7 +1,7 @@
 import React from "react"
 import dateConverter from "../helpers/dateConverter"
 
-const MeetingsTable = ({t, fetchTransaction, setShowDetails}) =>{
+const TransactionsTable = ({t, fetchTransaction, setShowDetails}) =>{
 
     const colClass = "flex items-center"
 
@@ -24,16 +24,15 @@ const MeetingsTable = ({t, fetchTransaction, setShowDetails}) =>{
                     <div className="flex items-center justify-start">Sender</div>
                     <div className={`${colClass} justify-end md:justify-start`}>Beneficiary</div>
                     <div className={`${colClass} justify-start`}>ID</div>
-                    <div className="text-right hidden lg:block">Status</div>
-                    <div className="text-right hidden lg:block">Type</div>
-                    <div className={`${colClass} justify-end text-right hidden lg:block`}>Amount</div>
+                    <div className="text-left hidden lg:block">Status</div>
+                    <div className="text-left hidden lg:block">Type</div>
+                    <div className={`${colClass} justify-start text-left hidden lg:block`}>Amount</div>
                     <div className={`${colClass} justify-end`}>More</div>
                 </div>
                 {t.transactions.map(transaction=>{
                     return <div key={transaction.mid} className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 w-full p-4">
                         <div className="flex items-center justify-start">
-                            <img src={transaction.sender.avatar} alt="counsellor Avatar" className="w-8 h-auto rounded-full"/>
-                            <p className="ml-2 ">
+                            <p className=" ">
                                 {transaction.sender.firstName} {transaction.sender.lastName}
                             </p>
                         </div>
@@ -44,15 +43,15 @@ const MeetingsTable = ({t, fetchTransaction, setShowDetails}) =>{
 
                         {/* <div className="text-right hidden lg:block">{timeConverter(meet.meetingDate)}</div> */}
 
-                        <div className="text-right hidden lg:block">
+                        <div className="text-left hidden lg:block">
                             {Status(transaction.status)}
                         </div>
 
-                        <div className="text-right hidden lg:block capitalize">
+                        <div className="text-left hidden lg:block capitalize">
                             {transaction.type}
                         </div>
 
-                        <div className={`${colClass} justify-end text-right hidden lg:block`}># {transaction.amount}</div>
+                        <div className={`${colClass} justify-start text-left hidden lg:block`}># {transaction.amount}</div>
 
                         <div className={`${colClass} justify-end`}>
                             <span className="py-1 px-4 rounded-full bg-gray-300 cursor-pointer hover:bg-gray-200"  
@@ -72,4 +71,4 @@ const MeetingsTable = ({t, fetchTransaction, setShowDetails}) =>{
     )
 }
 
-export default MeetingsTable
+export default TransactionsTable
