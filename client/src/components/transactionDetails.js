@@ -18,7 +18,7 @@ const TransactionDetails = ({transaction, setShowDetails})=>{
 
     return (
         <div className="fixed top-0 left-0 w-full min-h-screen bg-white transparent-bg bg-opacity-50 flex justify-center items-start pt-12 px-4 md:px-8 lg:px-0 detailsCont">
-                <div className="w-full md:w-3/4 lg:w-3/5 xl:w-2/5 h-auto rounded-lg bg-white shadow-md p-4 lg:p-8 relative ">
+                <div className="w-full md:w-3/4 lg:w-3/5 xl:w-2/5 h-auto rounded-lg bg-white shadow-md p-4 lg:p-5 relative ">
                     <div className="text-center text-4xl font-semibold py-2">Transaction Details</div>
 
                     <div className="grid grid-cols-12 gap-4">
@@ -27,7 +27,7 @@ const TransactionDetails = ({transaction, setShowDetails})=>{
                             <img src={transaction.sender.avatar} alt="Counsellor's avatar" className="w-24 h-24 rounded-full"/>
                         </div>
                         <div className="col-span-7 space-y-2">
-                            <p><span className="font-semibold">Name:</span> {transaction.sender.firstName} {transaction.sender.lastName}</p>
+                            <p><span className="font-semibold">Name:</span> {transaction.sender.first_name} {transaction.sender.last_name}</p>
                             <p><span className="font-semibold">Email:</span> {transaction.sender.email}</p>
                             <p><span className="font-semibold">Phone:</span> {transaction.sender.phone_number}</p>
                         </div>
@@ -39,9 +39,11 @@ const TransactionDetails = ({transaction, setShowDetails})=>{
                             <img src={transaction.beneficiary.avatar} alt="Counsellor's avatar" className="w-24 h-24 rounded-full"/>
                         </div>
                         <div className="col-span-7 space-y-2">
-                            <p><span className="font-semibold">Name:</span> {transaction.beneficiary.firstName} {transaction.beneficiary.lastName}</p>
+                            <p><span className="font-semibold">Name:</span> {transaction.beneficiary.first_name} {transaction.beneficiary.last_name}</p>
                             <p><span className="font-semibold">Email:</span> {transaction.beneficiary.email}</p>
                             <p><span className="font-semibold">Phone:</span> {transaction.beneficiary.phone_number}</p>
+                            <p><span className="font-semibold">Bank:</span> {transaction.beneficiary.bank_name}</p>
+                            <p><span className="font-semibold">Account number:</span> {transaction.beneficiary.account_number}</p>
                         </div>
                     </div>
 

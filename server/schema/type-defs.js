@@ -9,15 +9,17 @@ const typeDefs = gql`
     #     date
     #     status
     #     beneficiary{
-    #         firstName
-    #         lastName
+    #         first_name
+    #         last_name
     #         phone_number
     #         avatar
     #         email
+    #         bank_name
+    #         account_number
     #     },
     #     sender{
-    #         firstName
-    #         lastName
+    #         first_name
+    #         last_name
     #         avatar
     #         email
     #         phone_number
@@ -27,16 +29,18 @@ const typeDefs = gql`
     #     amount
     # }
     type Beneficiary{
-        firstName:String!
-        lastName:String!
+        first_name:String!
+        last_name:String!
         phone_number:String!
         email:String!
         avatar:String!
+        bank_name:String!
+        account_number:Int!
     }
 
     type Sender{
-        firstName:String!
-        lastName:String!
+        first_name:String!
+        last_name:String!
         avatar:String!
         email:String!
         phone_number:String!

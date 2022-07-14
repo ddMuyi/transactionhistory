@@ -10,12 +10,12 @@ export const QUERY_ALL_TRANSACTIONS = gql`
             type
             amount
             beneficiary{
-                firstName
-                lastName
+                first_name
+                last_name
             }
             sender{
-                firstName
-                lastName
+                first_name
+                last_name
             }
         }
     }
@@ -31,15 +31,17 @@ query getTransaction($transaction_id:String!){
         type
         amount
         beneficiary{
-            firstName
-            lastName
+            first_name
+            last_name
             phone_number
             email
             avatar
+            bank_name
+            account_number
         }
         sender{
-            firstName
-            lastName
+            first_name
+            last_name
             phone_number
             email
             avatar
@@ -58,12 +60,12 @@ export const FILTER_TRANSACTION_BY_NAME = gql`
             type
             amount
             beneficiary{
-                firstName
-                lastName
+                first_name
+                last_name
             }
             sender{
-                firstName
-                lastName
+                first_name
+                last_name
             }
         }
     }
@@ -79,12 +81,12 @@ export const FILTER_TRANSACTION_BY_TYPE_STATUS = gql`
             type
             amount
             beneficiary{
-                firstName
-                lastName
+                first_name
+                last_name
             }
             sender{
-                firstName
-                lastName
+                first_name
+                last_name
             }
         }
     }
@@ -100,12 +102,12 @@ export const FILTER_TRANSACTION_BY_DATE = gql`
             type
             amount
             beneficiary{
-                firstName
-                lastName
+                first_name
+                last_name
             }
             sender{
-                firstName
-                lastName
+                first_name
+                last_name
             }
         }
     }

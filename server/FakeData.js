@@ -15,7 +15,6 @@ const transactions_list = [
     
 ]
 
-
 // Lodash to create 40 instances of a meeting schema 
 for(let i =0; i<40; i++) {
     let random1 = Math.floor(Math.random() * 5)
@@ -28,15 +27,17 @@ for(let i =0; i<40; i++) {
         status:(["successful", "failed", "pending"])[Math.floor(Math.random() * 3)],
         type:(["withdrawal", "deposit", "transfer", "airtime"])[random_for_types],
         beneficiary:{
-            firstName:casual.first_name,
-            lastName:casual.last_name,
+            first_name:casual.first_name,
+            last_name:casual.last_name,
             phone_number:faker.phone.number(),
             avatar:faker.image.avatar(),
-            email:faker.internet.email()
+            email:faker.internet.email(),
+            bank_name:(["Buycoin", "FirstBank", "Guarantee Trust Bank", "UBA", "Polaris"])[Math.floor(Math.random() * 5)],
+            account_number:casual.integer(from = 010000000, to = 300000000)
         },
         sender:{
-            firstName:casual.first_name,
-            lastName:casual.last_name,
+            first_name:casual.first_name,
+            last_name:casual.last_name,
             avatar:faker.image.avatar(),
             email:faker.internet.email(),
             phone_number:faker.phone.number(),

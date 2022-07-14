@@ -33,11 +33,11 @@ const TransactionsTable = ({t, fetchTransaction, setShowDetails}) =>{
                     return <div key={transaction.mid} className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 w-full p-4">
                         <div className="flex items-center justify-start">
                             <p className=" ">
-                                {transaction.sender.firstName} {transaction.sender.lastName}
+                                {transaction.sender.first_name} {transaction.sender.last_name}
                             </p>
                         </div>
 
-                        <div className={`${colClass} justify-end md:justify-start`}>{transaction.beneficiary.firstName} {transaction.beneficiary.lastName}</div>
+                        <div className={`${colClass} justify-end md:justify-start`}>{transaction.beneficiary.first_name} {transaction.beneficiary.last_name}</div>
 
                         <div className={`${colClass} justify-start`}>{transaction.id}</div> 
 
